@@ -150,7 +150,6 @@ function createArticle(dataEntry){
 
   button.addEventListener('click', () => {
     article.classList.toggle('article-open');
-    article.classList.toggle('article-closed');
   });
 
   return article;
