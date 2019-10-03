@@ -89,7 +89,7 @@ const data = [
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
+
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
@@ -112,3 +112,57 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+data.push({
+  "title": 'Clutch Gaming drops first to Unicorns of Love',
+  "date": 'October 2nd, 2019',
+  "firstParagraph": 'The No. 1 seed in group A play-in stage was upset today by the representatives from the LCL.',
+  "secondParagraph": 'Clutch was the first team of the day to bring Ekko back into the jungle, and they would start a losing streak that saw Ekkos win percentage end the day at 0%',
+  "thirdParagraph": 'Clutch will need to win out the rest of their games in group A if they hope to grab the No. 1 seed going into the next stage on their way to Worlds group play'
+});
+
+function createArticle(dataEntry){
+
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const paraOne = document.createElement('p');
+  const paraTwo = document.createElement('p');
+  const paraThree = document.createElement('p');
+  const button = document.createElement('span');
+
+  article.appendChild(title)
+  article.appendChild(date)
+  article.appendChild(paraOne)
+  article.appendChild(paraTwo)
+  article.appendChild(paraThree)
+  article.appendChild(button)
+
+  article.classList.add('article')
+  date.classList.add('date')
+  button.classList.add('expandButton')
+
+  title.textContent = dataEntry.title;
+  date.textContent = dataEntry.date;
+  paraOne.textContent = dataEntry.firstParagraph;
+  paraTwo.textContent = dataEntry.secondParagraph;
+  paraThree.textContent = dataEntry.thirdParagraph;
+  button.textContent = 'Read'  
+
+  button.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  });
+
+  return article;
+};
+
+let newArticles = data.map((arrayItem) => {
+  newArticle = createArticle(arrayItem);
+  return newArticle;
+})
+
+const articles = document.querySelector('.articles');
+
+newArticles.forEach(component => {
+  articles.appendChild(component);
+})
+
